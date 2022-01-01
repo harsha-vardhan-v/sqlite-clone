@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "cli.h"
+#include "meta.h"
 int main(int argc, char *argv[])
 {
     InputBuffer *inputBuffer = new_input_buffer();
@@ -11,10 +12,32 @@ int main(int argc, char *argv[])
         print_prompt();
         read_input(inputBuffer);
 
-        if (strcmp(inputBuffer->buffer, ".exit") == 0)
-            exit(EXIT_SUCCESS);
-        else {
-            printf(" Unrecognized command %s.\n", inputBuffer->buffer);
+        //To execute meta commands
+        if (inputBuffer->buffer[0] == '.') {
+            switch (do_meta_command(inputBuffer))
+            {
+            case (META_COMMAND_SUCCESS):
+                continue;
+            
+            case (META_COMMAND_UNRECOGNIZED_COMMAND):
+                printf(" Unrecognized command %s.\n", inputBuffer->buffer);
+                continue;
+            }
         }
+
+        //To execute SQL Queries
+        // Statement statement;
+        // switch (prepare_statement(input_buffer, &statement))
+        // {
+        // case (PREPARE_SUCCESS):
+        //     break;
+        
+        // case (PREPARE_UNRECOGNIZED_STATEMENT):
+        //     printf(" Unrecognized keyword at the start of %s.\n", inputBuffer->buffer);
+        //     continue;
+        // }
+
+        // execute_statement(&statement);
+        // printf("Executed.\n");
     }
 }

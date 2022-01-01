@@ -1,6 +1,12 @@
 #ifndef CLI_H
 #define CLI_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <malloc.h>
+#include <sys/types.h>
+
 typedef struct InputBuffer{
     char *buffer;
     size_t bufferLength;

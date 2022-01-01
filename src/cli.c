@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <malloc.h>
-#include <sys/types.h>
 #include "cli.h"
-
 
 InputBuffer* new_input_buffer()
 {
