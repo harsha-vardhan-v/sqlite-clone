@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+
 #include "cli.h"
 
 typedef enum MetaCommandResult{
